@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class ChickenFollow : MonoBehaviour {
 
-	public Transform target;
+	// public Transform player;
 
-	public Transform myTransform;
+	// public Transform chicken;
 
-	void Start () {
+	// void Start () {
 
-		target = gameobject.findwithtag("Player").transform;
+	// 	player = GameObject.FindWithTag("Player").transform;
 		
-	}
+	// }
 	
 
-	void Update () {
-		transform.Lookat (target);
-		transform.Translate (Vector3.forward * Time.deltaTime);	
+	// void Update () {
+	// 	transform.LookAt (player);
+	// 	transform.Translate (Vector3.forward * Time.deltaTime);	
+	// }
+
+	public Rigidbody enemy;
+	public float moveSpeed;
+	public Transform target;
+
+	void OnTriggerStay(Collider other){
+		if(other.gameObject.name == "Player"){
+			Debug.Log("Player has entered chickens trigger");
+			transform.LookAt(target);
+			transform.Translate(Vector3.forward*moveSpeed*Time.deltaTime);
+		}
 	}
+
+
+
 }
+
