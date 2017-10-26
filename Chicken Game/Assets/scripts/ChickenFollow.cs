@@ -24,14 +24,24 @@ public class ChickenFollow : MonoBehaviour {
 	public float moveSpeed;
 	public Transform target;
 
+	public Transform chickenPen;
+
 	void OnTriggerStay(Collider other){
-		if(other.gameObject.name == "Player"){
+		if(other.gameObject.name == "Player" || other.gameObject.name == "Puppy"){
 			Debug.Log("Player has entered chickens trigger");
 			transform.LookAt(target);
 			transform.Translate(Vector3.forward*moveSpeed*Time.deltaTime);
 		}
+		else()
 	}
-
+	void OnCollisionEnter(Collision other){
+		if(other.gameObject.name == "Player"){
+			transform.position = chickenPen.position;
+			transform.rotation = chickenPen.rotation;
+		}
+		//destroy(gameObject);
+		//scoremanager.AddPoints(points);
+	}
 
 
 }
